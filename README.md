@@ -242,3 +242,37 @@ where:
 - $f_{\text{OM, TES comp}}$ = OM cost fraction [-]
 
 
+### Time-varying TES COP
+
+In addition to the standard TES formulation, the coefficient of performance of the TES compressor can be modeled either as a fixed value or as a time-varying parameter depending on ambient temperature.
+
+#### Fixed COP Mode
+
+When the fixed option is selected, a constant COP value is assumed for all time steps:
+
+$$
+COP_{\text{TES}}(t) = COP_{\text{fixed}}
+$$
+
+#### Temperature-dependent COP
+
+When the `carnot_tmy` mode is activated the TES COP is computed dynamically from the ambient temperature using a simplified Carnot relationship:
+
+$$
+COP_{\text{TES}}(t) = \alpha \cdot \frac{T_{\text{cold}}}{\max\left(T_{\text{warm}}(t) - T_{\text{cold}},\;1\right)}
+$$
+
+where:
+
+- $COP_{\text{TES}}(t)$ = coefficient of performance of the TES compressor at time step $t$ [-]  
+- $\alpha$ = efficiency correction factor accounting for non-ideal behavior [-]  
+- $T_{\text{cold}}$ = cold-side temperature of the refrigeration cycle [K]  
+- $T_{\text{warm}}(t)$ = ambient temperature at time step $t$ [K]
+
+#### COP Upper Bound
+
+To avoid unrealistically high efficiency values, the COP is capped with an upper limit:
+
+$$
+COP_{\text{TES}}(t) \leq 20
+$$
