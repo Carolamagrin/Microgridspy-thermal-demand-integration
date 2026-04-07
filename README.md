@@ -270,9 +270,3 @@ where:
 - $T_{\text{warm}}(t)$ = ambient temperature at time step $t$ [K]
 
 #### COP Upper Bound
-
-To avoid unrealistically high efficiency values, the COP is capped with an upper limit:
-
-$$
-COP_{\text{TES}}(t) \leq 20
-$$
