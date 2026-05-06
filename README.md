@@ -269,4 +269,37 @@ where:
 - $T_{\text{cold}}$ = cold-side temperature of the refrigeration cycle [K]  
 - $T_{\text{warm}}(t)$ = ambient temperature at time step $t$ [K]
 
-#### COP Upper Bound
+### TES Auxiliary Pump Consumption
+
+During TES discharge, an auxiliary circulation pump is assumed to transfer the cooling energy from the ice storage to the cold room heat exchanger.  
+The pump electricity consumption is modeled as proportional to the cooling energy delivered by the TES.
+
+The TES cooling output is:
+
+$$
+Q_{\text{TES}}(t) =
+\dot{m}_{\text{discharge}}(t)
+\cdot
+Q_{\text{per kg}}
+$$
+
+The auxiliary pump electrical consumption is defined as:
+
+
+$$
+E_{\text{pump}}(t) = f_{\text{pump}} \cdot Q_{\text{TES}}(t)
+$$
+
+
+
+where:
+
+- $E_{\text{pump}}(t)$ = auxiliary electrical consumption of the TES circulation pump [Wh]  
+- $f_{\text{pump}}$ = specific pump electricity consumption factor [-]  
+- $Q_{\text{TES}}(t)$ = cooling energy delivered by TES discharge [Wh$_{th}$]
+
+The pump consumption is included in the total additional electrical demand of the cooling system:
+
+$$
+E_{\text{extra}}(t) = E_{\text{direct,compressor}}(t) + E_{\text{TES}}(t) + E_{\text{pump}}(t)
+$$
